@@ -23,6 +23,8 @@ Route::get('/page','PageController@page')->name('page');
 
 Route::get('/page_create','PageController@page_create')->name('page_create');
 
-Route::get('/edit_page/{id}','PageController@edit_page')->name('edit_page');
+Route::get('/PageEdit/{id}','PageController@PageEdit')->name('PageEdit');
+
+Route::post('editPage', 'PageController@editPage')->name('editPage');
 
 Route::post('CreatePage', 'PageController@CreatePage')->name('CreatePage');

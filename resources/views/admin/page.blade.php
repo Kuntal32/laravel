@@ -40,7 +40,7 @@
                   <td>{{ $page->title }}</td>
                   <td>{{ $page->content }}</td>
                   <td>{{ $page->created_at }}</td>
-                  <td><a class="btn btn-primary" href="{{ route('edit_page', $page->page_id) }}">Edit</a></td>
+                  <td><a class="btn btn-primary" href="{{ route('PageEdit', $page->page_id) }}">Edit</a></td>
                 </tr>
                @endforeach
               </tbody>

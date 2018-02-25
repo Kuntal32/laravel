@@ -37,8 +37,34 @@ class PageController extends Controller
 
     }
 
-    public function edit_page(){
-        
+
+
+    public function PageEdit(Request $request,$id){
+       
+
+        $page= Page::where('page_id',$id)->first();
+        return view('admin.editPage')->with('page',$page);
+    }
+
+    public function editPage(Request $request)
+    {
+         if ($request->isMethod('post')) {
+               $validatedData = Validator::make($request->all(),[
+                    'title'=> 'required',
+                    'name'=> 'required',
+                    'metaTitle' => 'required',
+                    'metaDescription' => 'required',
+                    'content' => 'required',
+                ]);
+
+                if ($validatedData->fails()) {
+                return redirect()->route('PageEdit', ['id' => $request->post('page_id')])
+                            ->withErrors($validatedData)
+                            ->withInput();
+                }
+               Page::find($request->post('page_id'))->update($request->all());
+               return redirect('page')->with('info', 'Page has been updated Successfully!');;
+            }
     }
 
     public function CreatePage(Request $request)
