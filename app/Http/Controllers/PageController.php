@@ -26,6 +26,7 @@ class PageController extends Controller
    
     public function page()
     {
+
        $pages = Page::all();
 
        return view('admin.page')->with('pages',$pages);
@@ -63,7 +64,7 @@ class PageController extends Controller
                             ->withInput();
                 }
                Page::find($request->post('page_id'))->update($request->all());
-               return redirect('page')->with('info', 'Page has been updated Successfully!');;
+               return redirect('page')->with('info', 'Page has been updated Successfully!');
             }
     }
 
