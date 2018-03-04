@@ -28,3 +28,18 @@ Route::get('/PageEdit/{id}','PageController@PageEdit')->name('PageEdit');
 Route::post('editPage', 'PageController@editPage')->name('editPage');
 
 Route::post('CreatePage', 'PageController@CreatePage')->name('CreatePage');
+
+Route::get('/image','ImageController@index')->name('image');
+
+Route::get('/upload_image','ImageController@upload_image')->name('upload_image');
+
+Route::get('/ImageEdit/{id}','ImageController@ImageEdit')->name('ImageEdit');
+
+Route::post('editImage', 'ImageController@editImage')->name('editImage');
+
+Route::post('/ImageDelete','ImageController@ImageDelete')->name('ImageDelete');
+
+
+Route::post('UploadImage', 'ImageController@UploadImage')->name('UploadImage');
+
+

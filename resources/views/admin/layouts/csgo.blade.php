@@ -60,10 +60,10 @@
           </a>
           <ul class="sidenav-second-level collapse" id="imageGallery">
             <li>
-              <a href="{{ route('page') }}">Page List</a>
+              <a href="{{ route('image') }}">Image List</a>
             </li>
             <li>
-              <a href="{{ route('page_create') }}">Create Page</a>
+              <a href="{{ route('upload_image') }}">Image Upload</a>
             </li>
           </ul>
         </li>
@@ -140,6 +140,35 @@
         </div>
       </div>
     </div>
+
+     <!-- Alert Image Modal-->
+    <div class="modal fade" id="alertimageModal" tabindex="-1" role="dialog" aria-labelledby="alertimageModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+       
+          <div class="modal-header">
+            <h5 class="modal-title" id="alertimageModalLabel">Do You want to delete?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+         
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+           
+        
+
+                <form id="logout-form" action="{{ route('ImageDelete') }}" method="POST" >
+                  <input type="hidden" name="image_id_modal" id="image_id_modal" value=""/>
+                  <input type="hidden" name="image_name" id="image_name" value=""/>
+                    @csrf
+                  <input type="submit" class="btn btn-danger" value="Delete"></input>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
      <!-- Scripts -->
      <script src="{{ asset('public/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('public/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
