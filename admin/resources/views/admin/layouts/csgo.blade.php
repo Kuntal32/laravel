@@ -53,6 +53,21 @@
           </ul>
         </li>
 
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#slider" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-wrench"></i>
+            <span class="nav-link-text">Slider Manager</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="slider">
+            <li>
+              <a href="{{ route('slider') }}">Image List</a>
+            </li>
+            <li>
+              <a href="{{ route('slider_upload') }}">Image Upload</a>
+            </li>
+          </ul>
+        </li>
+
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#imageGallery" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-wrench"></i>
@@ -161,6 +176,34 @@
                 <form id="logout-form" action="{{ route('ImageDelete') }}" method="POST" >
                   <input type="hidden" name="image_id_modal" id="image_id_modal" value=""/>
                   <input type="hidden" name="image_name" id="image_name" value=""/>
+                    @csrf
+                  <input type="submit" class="btn btn-danger" value="Delete"></input>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+      <div class="modal fade" id="alertsliderModal" tabindex="-1" role="dialog" aria-labelledby="alertsliderModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+       
+          <div class="modal-header">
+            <h5 class="modal-title" id="alertimageModalLabel">Do You want to delete?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+         
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+           
+        
+
+                <form id="logout-form" action="{{ route('sliderImageDelete') }}" method="POST" >
+                  <input type="hidden" name="slider_id_modal" id="slider_id_modal" value=""/>
+                  <input type="hidden" name="slider_image_name" id="slider_image_name" value=""/>
                     @csrf
                   <input type="submit" class="btn btn-danger" value="Delete"></input>
                 </form>

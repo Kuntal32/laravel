@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Image;
+use App\Slider;
 use \Validator;
 
-class ImageController extends Controller
+class SliderController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -15,7 +15,6 @@ class ImageController extends Controller
      */
     public function __construct()
     {
-
         $this->middleware('auth');
     }
 
@@ -27,25 +26,25 @@ class ImageController extends Controller
     public function index()
     {
 
-       $images=Image::all();
+       $images=Slider::all();
 
-       return view('admin.image')->with('images',$images);
+       return view('admin.sliderimage')->with('images',$images);
     }
 
-    public function upload_image()
+    public function slider_upload()
     {
 
-        return view('admin.upload_image');
+        return view('admin.slider_upload_image');
     }
 
-     public function ImageEdit(Request $request,$id){
+     public function SliderImageEdit(Request $request,$id){
        
 
-        $image= Image::where('image_id',$id)->first();
-        return view('admin.editImage')->with('image',$image);
+        $image= Slider::where('slider_id',$id)->first();
+        return view('admin.slidereditImage')->with('image',$image);
     }
 
-     public function editImage(Request $request)
+     public function slidereditImage(Request $request)
     {
         $imageName='';
          if ($request->isMethod('post')) {
@@ -56,15 +55,15 @@ class ImageController extends Controller
                 ]);
 
                 if ($validatedData->fails()) {
-                return redirect()->route('ImageEdit', ['id' => $request->post('Image_id')])
+                return redirect()->route('SliderImageEdit', ['id' => $request->post('slider_id')])
                             ->withErrors($validatedData)
                             ->withInput();
                 }
                
                if($request->image){
                 $imageName = time().'.'.request()->image->getClientOriginalExtension();
-                request()->image->move(public_path('images'), $imageName);
-                unlink(public_path('images').'/'.$request->post('image_name'));
+                request()->image->move(public_path('slider'), $imageName);
+                unlink(public_path('slider').'/'.$request->post('image_name'));
                }
 
                 if($imageName!=''){
@@ -80,45 +79,44 @@ class ImageController extends Controller
                     );
                 }
 
-               Image::find($request->post('image_id'))->update($update_data);
-               return redirect('image')->with('info', 'Image has been updated Successfully!');
+               Slider::find($request->post('slider_id'))->update($update_data);
+               return redirect('slider')->with('info', 'Image has been updated Successfully!');
             }
     }
 
-     public function UploadImage(Request $request)
+     public function SliderUploadImage(Request $request)
     {
-        
         $validatedData = Validator::make($request->all(),[
                 'title' => 'required',
                 'description' => 'required',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
              ]);
           if ($validatedData->fails()) {
-            return redirect('upload_image')
+            return redirect('slider_upload')
                         ->withErrors($validatedData)
                         ->withInput();
           }
 
           $imageName = time().'.'.request()->image->getClientOriginalExtension();
 
-          request()->image->move(public_path('images'), $imageName);
+          request()->image->move(public_path('slider'), $imageName);
             
-        $image = new Image;
+        $image = new Slider;
 
         $image->title = $request->title;
         $image->description = $request->description;
         $image->image = $imageName;
        
         $image->save();
-        return redirect('image')->with('info', 'Image has been uploaded Successfully!');
+        return redirect('slider')->with('info', 'Image has been uploaded Successfully!');
     }
 
-    public function ImageDelete(request $request){
-           // dd($request->all());
+    public function sliderImageDelete(request $request){
+         
          if ($request->isMethod('post')) {
-             Image::where('image_id',$request->post('image_id_modal'))->delete();
-             unlink(public_path('images').'/'.$request->post('image_name'));
-             return redirect('image')->with('info', 'Image has been deleted Successfully!');
+             Slider::where('slider_id',$request->post('slider_id_modal'))->delete();
+             unlink(public_path('slider').'/'.$request->post('slider_image_name'));
+             return redirect('slider')->with('info', 'Image has been deleted Successfully!');
          }
     }
 

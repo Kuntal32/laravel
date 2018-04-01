@@ -39,7 +39,22 @@ Route::post('editImage', 'ImageController@editImage')->name('editImage');
 
 Route::post('/ImageDelete','ImageController@ImageDelete')->name('ImageDelete');
 
-
 Route::post('UploadImage', 'ImageController@UploadImage')->name('UploadImage');
+
+
+Route::post('SliderImage', 'SliderController@SliderImage')->name('SliderImage');
+
+Route::get('/slider','SliderController@index')->name('slider');
+
+Route::get('/slider_upload','SliderController@slider_upload')->name('slider_upload');
+
+Route::get('/SliderImageEdit/{id}','SliderController@SliderImageEdit')->name('SliderImageEdit');
+
+Route::post('slidereditImage', 'SliderController@slidereditImage')->name('slidereditImage');
+
+Route::post('/sliderImageDelete','SliderController@sliderImageDelete')->name('sliderImageDelete');
+
+
+Route::post('SliderUploadImage', 'SliderController@SliderUploadImage')->name('SliderUploadImage');
 
 

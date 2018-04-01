@@ -6,11 +6,11 @@
         <li class="breadcrumb-item">
           <a href="{{ route('home') }}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Image Upload</li>
+        <li class="breadcrumb-item active">Slider Upload Image</li>
       </ol>
     
 
-   {!! Form::open(['route' => 'UploadImage','files'=>true]) !!}
+   {!! Form::open(['route' => 'SliderUploadImage','files'=>true]) !!}
 	   
 
 		<div class="input-group mb-3">
